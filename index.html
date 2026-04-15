@@ -1434,23 +1434,6 @@
     color: var(--text-dim);
   }
 
-  .emergency-link {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--section-signoff);
-  text-decoration: none;
-  padding: 4px 10px;
-  border-radius: var(--radius);
-  border: 1px solid rgba(220, 38, 38, 0.25);
-  background: rgba(220, 38, 38, 0.06);
-  transition: all 0.15s ease;
-  white-space: nowrap;
-}
-.emergency-link:hover {
-  background: rgba(220, 38, 38, 0.12);
-  border-color: rgba(220, 38, 38, 0.4);
-}
-
   @media (max-width: 640px) {
     .field-grid, .field-grid-3 { grid-template-columns: 1fr; }
     .field-grid .full-width, .field-grid-3 > * { grid-column: 1; }
@@ -1473,7 +1456,6 @@
   </div>
   <div class="topbar-right">
     <button class="btn hide" onclick="celebrate()" style="background: #f59e0b; color: white; font-size: 11px;">🧪 Test Celebration</button>
-    <a href="crisis.html" class="emergency-link">🔥 Emergency</a>
     <button class="btn-clear-form" onclick="confirmClearForm()">Clear</button>
     <div class="drafts-container">
       <button class="btn-load-draft" onclick="toggleDraftsDropdown()" id="draftsBtn">Load Draft</button>
@@ -1833,6 +1815,7 @@
 <!-- Status bar -->
 <div class="status-bar">
   <a href="https://docs.google.com/spreadsheets/d/1rtOSXImG0BIGCrCKMEl9AzQapxSNp4oGI7Sp8rSw1yg/edit?usp=sharing" target="_blank" class="tracker-link">View Tracker</a>
+<a href="crisis.html" class="tracker-link">Urgent Request</a>
   <div class="status-pills" id="statusPills"></div>
   <button class="btn btn-primary" id="submitBtn2" onclick="submitForm()">Submit QA</button>
   <a href="#" class="btn-save-draft-bottom" onclick="event.preventDefault(); saveDraft();">Save Draft</a>
@@ -2642,5 +2625,6 @@
     });
   });
 </script>
+
 </body>
 </html>
