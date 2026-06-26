@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NAR Emergency Email</title>
+<title>NAR Urgent Email</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root, [data-theme="light"] {
@@ -222,7 +222,7 @@
 <div class="topbar">
   <div class="topbar-left">
     <a href="index.html" class="back-link">← QA Form</a>
-    <span class="topbar-title">Emergency Email</span>
+    <span class="topbar-title">Urgent Email</span>
   </div>
   <div class="topbar-right">
     <button class="btn-clear" onclick="confirmClear()">Clear</button>
@@ -370,7 +370,7 @@
 
           <div class="field-row single">
             <div class="field">
-              <label class="field-label">UTM tracking needed? <span class="opt-tag">usually no for crisis</span></label>
+              <label class="field-label">UTM tracking needed? <span class="opt-tag">usually no for urgent</span></label>
               <div class="radio-pills" id="rp_utm">
                 <label class="radio-pill" onclick="selectPill(this,'rp_utm'); showCond('cond_utm','yes')"><input type="radio" name="utm_needed" value="yes"> Yes</label>
                 <label class="radio-pill" onclick="selectPill(this,'rp_utm'); showCond('cond_utm','no')"><input type="radio" name="utm_needed" value="no"> No</label>
@@ -675,7 +675,7 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(gatherData()),
       });
-      showToast('Logged to Crisis tab ✓');
+      showToast('Logged to tracker ✓');
       setTimeout(() => { btn.disabled = false; btn.textContent = 'Log to Tracker'; }, 3000);
     } catch (err) {
       showToast('Error: ' + err.message, true);
