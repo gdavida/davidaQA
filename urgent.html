@@ -287,6 +287,22 @@
               <input class="field-input" type="text" id="f_content_eta" placeholder="e.g. by noon, waiting on Josh, already in...">
             </div>
           </div>
+          <div class="field-row single">
+            <div class="field">
+              <label class="field-label">Send speed — ASAP or throttled? <span class="opt-tag">throttle when you can</span></label>
+              <div class="radio-pills" id="rp_throttle">
+                <label class="radio-pill" onclick="selectPill(this,'rp_throttle'); showCond('cond_throttle','throttled')"><input type="radio" name="throttle" value="throttled"> Throttle over 4–6 hrs</label>
+                <label class="radio-pill" onclick="selectPill(this,'rp_throttle'); showCond('cond_throttle','asap')"><input type="radio" name="throttle" value="asap"> Send ASAP (all at once)</label>
+              </div>
+              <div style="font-size:12px; color:var(--text-muted); line-height:1.5; margin-top:8px;">Throttling over 4–6 hours is gentler on deliverability and sender reputation. Only go all-at-once if it's genuinely time-critical that everyone gets it immediately.</div>
+              <div class="conditional" id="cond_throttle_throttled">
+                <input class="field-input" type="text" id="f_throttle_window" placeholder="Throttle window / batch details (e.g. evenly over 4 hours)" style="margin-top:8px;">
+              </div>
+              <div class="conditional" id="cond_throttle_asap">
+                <input class="field-input" type="text" id="f_throttle_reason" placeholder="Why does this need to go all at once? (confirm it's worth the reputation hit)" style="margin-top:8px;">
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="field-group">
@@ -301,6 +317,28 @@
             <div class="field">
               <label class="field-label">Suppressions or exclusions</label>
               <input class="field-input" type="text" id="f_suppressions" placeholder="e.g. standard suppression only, exclude recent purchasers...">
+            </div>
+          </div>
+          <div class="field-row single">
+            <div class="field">
+              <label class="field-label">All NAR staff — include or suppress?</label>
+              <div class="radio-pills" id="rp_nar_staff">
+                <label class="radio-pill" onclick="selectPill(this,'rp_nar_staff')"><input type="radio" name="nar_staff" value="include"> Include staff</label>
+                <label class="radio-pill" onclick="selectPill(this,'rp_nar_staff')"><input type="radio" name="nar_staff" value="suppress"> Suppress staff</label>
+                <label class="radio-pill" onclick="selectPill(this,'rp_nar_staff')"><input type="radio" name="nar_staff" value="na"> No preference</label>
+              </div>
+            </div>
+          </div>
+          <div class="field-row single">
+            <div class="field">
+              <label class="field-label">Seed list / monitoring inboxes included?</label>
+              <div class="radio-pills" id="rp_seedlist">
+                <label class="radio-pill" onclick="selectPill(this,'rp_seedlist'); showCond('cond_seedlist','yes')"><input type="radio" name="seedlist" value="yes"> Yes</label>
+                <label class="radio-pill" onclick="selectPill(this,'rp_seedlist'); showCond('cond_seedlist','no')"><input type="radio" name="seedlist" value="no"> No</label>
+              </div>
+              <div class="conditional" id="cond_seedlist_yes">
+                <input class="field-input" type="text" id="f_seedlist_detail" placeholder="Which seed list / inboxes?" style="margin-top:8px;">
+              </div>
             </div>
           </div>
         </div>
@@ -633,8 +671,13 @@
     d.send_date = v('f_send_date');
     d.send_time = v('f_send_time');
     d.content_eta = v('f_content_eta');
+    d.throttle = rv('throttle');
+    d.throttle_detail = v('f_throttle_window') || v('f_throttle_reason');
     d.segment = v('f_segment');
     d.suppressions = v('f_suppressions');
+    d.nar_staff = rv('nar_staff');
+    d.seedlist = rv('seedlist');
+    d.seedlist_detail = v('f_seedlist_detail');
     d.subject_source = rv('subject_source');
     d.subject_line = v('f_subject_line') || v('f_subject_notes');
     d.from_name = v('f_from_name');
